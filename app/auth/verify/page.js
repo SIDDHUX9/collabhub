@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
@@ -9,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { toast } from 'sonner'
 import { CheckCircle, Zap } from 'lucide-react'
 
-export default function VerifyPage() {
+function VerifyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [status, setStatus] = useState('verifying');
@@ -100,5 +101,15 @@ export default function VerifyPage() {
         </Card>
       </motion.div>
     </div>
+  );
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center">
+      <div className="w-16 h-16 border-4 border-[#00ffff] border-t-transparent rounded-full animate-spin" />
+    </div>}>
+      <VerifyContent />
+    </Suspense>
   );
 }

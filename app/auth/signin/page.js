@@ -39,7 +39,7 @@ export default function SignInPage() {
         localStorage.setItem('authToken', data.token);
         setUser(data.user);
         toast.success('Welcome back!');
-        
+
         if (!data.user.onboarded) {
           router.push('/auth/onboarding');
         } else {
